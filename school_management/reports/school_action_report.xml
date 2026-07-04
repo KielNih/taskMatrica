@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_student_card" model="report.paperformat">
+        <field name="name">Kartu Pelajar</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_width">86</field> <field name="page_height">54</field> <field name="orientation">Portrait</field>
+        <field name="margin_top">2</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">2</field>
+        <field name="margin_right">2</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_student_identity_card" model="ir.actions.report">
+        <field name="name">Cetak Kartu Pelajar</field>
+        <field name="model">student.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_management.template_student_card</field>
+        <field name="report_file">school_management.template_student_card</field>
+        <field name="print_report_name">'Kartu_Pelajar_%s' % (object.nis)</field>
+        <field name="binding_model_id" ref="model_student_student"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="school_management.paperformat_student_card"/>
+    </record>
+</odoo>

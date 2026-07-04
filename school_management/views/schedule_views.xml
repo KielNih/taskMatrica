@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_schedule_list" model="ir.ui.view">
+        <field name="name">school.schedule.list</field>
+        <field name="model">school.schedule</field>
+        <field name="arch" type="xml">
+            <list string="Jadwal Pelajaran">
+                <field name="schedule_datetime"/>
+                <field name="class_id"/>
+                <field name="subject_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_school_schedule_form" model="ir.ui.view">
+        <field name="name">school.schedule.form</field>
+        <field name="model">school.schedule</field>
+        <field name="arch" type="xml">
+            <form string="Formulir Jadwal">
+                <sheet>
+                    <group>
+                        <group string="Waktu Pelaksanaan">
+                            <field name="schedule_datetime"/>
+                        </group>
+                        <group string="Target Kelas &amp; Mapel">
+                            <field name="class_id" options="{'no_create': True}"/>
+                            <field name="subject_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_school_schedule" model="ir.actions.act_window">
+        <field name="name">Jadwal Pelajaran</field>
+        <field name="res_model">school.schedule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

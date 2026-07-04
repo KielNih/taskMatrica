@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_subject_list" model="ir.ui.view">
+        <field name="name">school.subject.list</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Mata Pelajaran">
+                <field name="name"/>
+                <field name="major"/>
+                <field name="teacher_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_school_subject_form" model="ir.ui.view">
+        <field name="name">school.subject.form</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <form string="Formulir Mata Pelajaran">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="major"/>
+                        <field name="teacher_id" options="{'no_create': True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_school_subject" model="ir.actions.act_window">
+        <field name="name">Mata Pelajaran</field>
+        <field name="res_model">school.subject</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_school_subject_action" name="Mata Pelajaran" parent="menu_school_academic" action="action_school_subject" sequence="20"/>
+</odoo>

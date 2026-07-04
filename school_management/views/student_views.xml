@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_student_list" model="ir.ui.view">
+        <field name="name">student.student.list</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Siswa">
+                <field name="nis"/>
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="gender"/>
+                <field name="age"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_student_kanban" model="ir.ui.view">
+        <field name="name">student.student.kanban</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <kanban string="Kanban Siswa">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="nis"/>
+                <field name="image"/>
+                <field name="class_id"/>
+              <templates>
+                    <t t-name="card">
+                        <div class="d-flex align-items-center gap-3 p-2">
+                            <div class="o_kanban_image_box" style="width: 60px; height: 60px;">
+                                <t t-if="record.image.raw_value">
+                                    <img t-attf-src="/web/image/student.student/{{ record.id.raw_value }}/image" class="w-100 h-100 rounded-circle object-fit-cover" alt="Siswa"/>
+                                </t>
+                                <t t-else="">
+                                    <img src="/base/static/img/avatar_grey.png" class="w-100 h-100 rounded-circle object-fit-cover" alt="Avatar"/>
+                                </t>
+                            </div>
+                            <div class="oe_kanban_details d-flex flex-column">
+                                <strong class="o_kanban_record_title fs-5"><field name="name"/></strong>
+                                <span class="text-muted">NIS: <field name="nis"/></span>
+                                <span class="badge text-bg-primary mt-1 align-self-start"><field name="class_id"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">student.student.form</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <form string="Formulir Siswa">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image', 'size': [90, 90]}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Nama Siswa"/>
+                        <h1><field name="name" placeholder="Masukkan Nama Lengkap"/></h1>
+                    </div>
+                    <group>
+                        <group string="Akademik &amp; Identitas">
+                            <field name="nis"/>
+                            <field name="class_id" options="{'no_create': True}"/>
+                            <field name="gender"/>
+                            <field name="religion"/>
+                        </group>
+                        <group string="Data Kelahiran &amp; Orang Tua">
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="father_name"/>
+                            <field name="mother_name"/>
+                        </group>
+                    </group>
+                    <group string="Kontak &amp; Alamat">
+                        <field name="address"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_student_search" model="ir.ui.view">
+        <field name="name">student.student.search</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="nis"/>
+                
+                <separator/>
+                <filter string="Siswa Laki-Laki" name="filter_male" domain="[('gender', '=', 'L')]"/>
+                <filter string="Siswa Perempuan" name="filter_female" domain="[('gender', '=', 'P')]"/>
+                
+                <separator/>
+                <filter string="Berdasarkan Kelas" name="group_class" context="{'group_by': 'class_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Data Siswa</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <menuitem id="menu_student_action" name="Siswa" parent="menu_school_master_data" action="action_student" sequence="20"/>
+</odoo>

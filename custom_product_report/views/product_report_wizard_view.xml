@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_report_wizard_form" model="ir.ui.view">
+        <field name="name">product.report.wizard.form</field>
+        <field name="model">product.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Product Report">
+                <sheet>
+                    <div class="alert alert-info" role="alert" invisible="excel_file == False">
+                        Excel Report berhasil dibuat! Silakan klik link <strong>Download Report</strong> di bawah untuk mengunduh.
+                    </div>
+                    
+                    <group>
+                        <group string="Date Filter">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group string="Export Result" invisible="excel_file == False">
+                            <field name="file_name" invisible="1"/>
+                            <field name="excel_file" filename="file_name"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_generate_excel_report" string="Generate Excel" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_report_wizard" model="ir.actions.act_window">
+        <field name="name">Product Sales &amp; Purchase Report</field>
+        <field name="res_model">product.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_product_report_wizard"
+              name="Product Sales &amp; Purchase Excel"
+              parent="sale.menu_sale_report"
+              action="action_product_report_wizard"
+              sequence="100"/>
+</odoo>

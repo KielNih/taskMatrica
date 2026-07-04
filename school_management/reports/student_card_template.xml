@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="template_student_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-family: Arial, sans-serif;">
+                        <div style="width: 82mm; height: 50mm; border: 2px solid #1a252f; border-radius: 8px; background-color: #ffffff; padding: 4px; box-sizing: border-box;margin: 1mm auto 0 auto;">
+                            
+                            <div style="text-align: center; margin-bottom: 4px; padding-bottom: 2px; border-bottom: 1px solid #1a252f;">
+                                <div style="font-size: 10px; font-weight: bold; color: #1a252f; letter-spacing: 0.5px;">KARTU TANDA PELAJAR</div>
+                                <div style="font-size: 7px; color: #6c757d;">Nama Sekolah</div>
+                            </div>
+
+                            <table class="table-borderless" style="width: 100%; border: none;" border="0" cellpadding="0" cellspacing="0">
+                                <tr style="border: none;">
+                                    
+                                    <td style="width: 28%; vertical-align: top; text-align: center; border: none; padding: 0;">
+                                        <t t-if="doc.image">
+                                            <img t-att-src="image_data_uri(doc.image)" style="width: 20mm; height: 26mm; object-fit: cover; border-radius: 4px;" alt="Foto"/>
+                                        </t>
+                                        <t t-else="">
+                                            <div style="width: 20mm; height: 26mm; background-color: #e9ecef; border-radius: 4px; font-size: 8px; color: #6c757d; line-height: 26mm;">No Foto</div>
+                                        </t>
+                                    </td>
+
+                                    <td style="width: 48%; vertical-align: top; padding-left: 6px; border: none;">
+                                        <table class="table-borderless" style="width: 100%;margin-top:15px; font-size: 9px; line-height: 1.5; border-collapse: collapse; border: none;" border="0" cellpadding="0" cellspacing="0">
+                                            <tr style="border: none;">
+                                                <td style="font-weight: bold; width: 35%; border: none; padding: 0;">Nama</td>
+                                                <td style="width: 5%; border: none; padding: 0;">:</td>
+                                                <td style="border: none; padding: 0;"><span t-field="doc.name"/></td>
+                                            </tr>
+                                            <tr style="border: none;">
+                                                <td style="font-weight: bold; border: none; padding: 0;">NIS</td>
+                                                <td style="border: none; padding: 0;">:</td>
+                                                <td style="border: none; padding: 0;"><span t-field="doc.nis"/></td>
+                                            </tr>
+                                            <tr style="border: none;">
+                                                <td style="font-weight: bold; border: none; padding: 0;">Kelas</td>
+                                                <td style="border: none; padding: 0;">:</td>
+                                                <td style="border: none; padding: 0;"><span t-field="doc.class_id.name"/></td>
+                                            </tr>
+                                            <tr style="border: none;">
+                                                <td style="font-weight: bold; border: none; padding: 0;">Gender</td>
+                                                <td style="border: none; padding: 0;">:</td>
+                                                <td style="border: none; padding: 0;">
+                                                    <t t-if="doc.gender == 'L'">Laki-Laki</t>
+                                                    <t t-else="">Perempuan</t>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td style="width: 24%; vertical-align: middle; text-align: center; border: none; padding: 0;">
+                                        <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=90&amp;height=90' % (doc.nis)" style="width: 17mm; height: 17mm; padding: 1px;" alt="QR"/>
+                                        <div style="font-size: 7px; font-weight: bold; margin-top: 2px;"><span t-field="doc.nis"/></div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

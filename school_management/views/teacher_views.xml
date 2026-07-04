@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_teacher_list" model="ir.ui.view">
+        <field name="name">teacher.teacher.list</field>
+        <field name="model">teacher.teacher</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Guru">
+                <field name="nip"/>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="phone"/>
+                <field name="graduation_year"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_teacher_form" model="ir.ui.view">
+        <field name="name">teacher.teacher.form</field>
+        <field name="model">teacher.teacher</field>
+        <field name="arch" type="xml">
+            <form string="Formulir Guru">
+                <sheet>
+                    <group>
+                        <group string="Informasi Pribadi">
+                            <field name="nip"/>
+                            <field name="name"/>
+                            <field name="gender"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                        </group>
+                        <group string="Latar Belakang &amp; Kontak">
+                            <field name="phone"/>
+                            <field name="last_education"/>
+                            <field name="major"/>
+                            <field name="graduation_year"/>
+                        </group>
+                    </group>
+                    <group string="Domisili">
+                        <field name="address"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_teacher_graph" model="ir.ui.view">
+        <field name="name">teacher.teacher.graph</field>
+        <field name="model">teacher.teacher</field>
+        <field name="arch" type="xml">
+            <graph string="Analisis Guru Berdasarkan Tahun Lulus" type="bar">
+                <field name="graduation_year" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_teacher" model="ir.actions.act_window">
+        <field name="name">Data Guru</field>
+        <field name="res_model">teacher.teacher</field>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+
+    <menuitem id="menu_teacher_action" name="Guru" parent="menu_school_master_data" action="action_teacher" sequence="10"/>
+</odoo>

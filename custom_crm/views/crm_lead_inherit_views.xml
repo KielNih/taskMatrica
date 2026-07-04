@@ -1,0 +1,36 @@
+<odoo>
+    <record id="crm_lead_view_form_inherit_custom" model="ir.ui.view">
+        <field name="name">crm.lead.view.form.inherit.custom</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
+                <field name="is_new_customer"/>
+                <field name="customer_segment"/>
+                
+                <field name="other_customer_segment" 
+                       invisible="customer_segment != 'swasta_lainnya'" 
+                       required="customer_segment == 'swasta_lainnya'"/>
+                       
+                <field name="segment_product_id"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Task Progress" name="task_progress_page">
+                    <field name="task_progress_ids">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="deadline_date"/>
+                            <field name="state" widget="badge" 
+                                   decoration-info="state == 'progress'" 
+                                   decoration-success="state == 'done'" 
+                                   decoration-muted="state == 'todo'"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
