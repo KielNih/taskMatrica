@@ -5,7 +5,6 @@ from datetime import date
 
 class StudentStudent(models.Model):
     _name = 'student.student'
-    _description = 'Master Data Siswa'
     _order = 'name'
 
     nis = fields.Char(string='NIS', required=True, index=True)

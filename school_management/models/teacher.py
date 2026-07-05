@@ -6,7 +6,6 @@ from datetime import date
 
 class SchoolTeacher(models.Model):
     _name = 'teacher.teacher'
-    _description = 'Master Data Guru'
     _order = 'name'
 
     nip = fields.Char(string='NIP', required=True, index=True)

@@ -1,4 +1,3 @@
-# models/crm_lead.py
 from odoo import models, fields
 
 class CrmLead(models.Model):

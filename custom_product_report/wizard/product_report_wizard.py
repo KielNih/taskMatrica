@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
+
 import base64
 import io
 import xlsxwriter
-from datetime import datetime, time # PERBAIKAN: Import modul time dan datetime
+from datetime import datetime, time 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 class ProductReportWizard(models.TransientModel):
     _name = 'product.report.wizard'
-    _description = 'Product Sales and Purchase Report Wizard'
 
     start_date = fields.Date(string='Start Date', required=True)
     end_date = fields.Date(string='End Date', required=True)

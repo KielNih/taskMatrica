@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 import re
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 class SchoolClass(models.Model):
     _name = 'school.class'
-    _description = 'Data Kelas'
 
     name = fields.Char(string='Nama Kelas', required=True)
     teacher_id = fields.Many2one('teacher.teacher', string='Wali Kelas', ondelete='set null')
