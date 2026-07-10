@@ -22,10 +22,7 @@
                         <list editable="bottom">
                             <field name="name"/>
                             <field name="deadline_date"/>
-                            <field name="state" widget="badge" 
-                                   decoration-info="state == 'progress'" 
-                                   decoration-success="state == 'done'" 
-                                   decoration-muted="state == 'todo'"/>
+                            <field name="state" />
                         </list>
                     </field>
                 </page>
